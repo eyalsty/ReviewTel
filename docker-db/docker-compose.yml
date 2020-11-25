@@ -1,0 +1,17 @@
+version: '3.7'
+
+services:
+  mysql-reviewtel:
+    image: mysql:5.7
+    ports:
+      - target: 3306
+        published: 3306
+        protocol: tcp
+        mode: host
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    volumes:
+      - ./mysql-dump:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_ROOT_PASSWORD: password1
+      MYSQL_DATABASE: reviewTel_db
