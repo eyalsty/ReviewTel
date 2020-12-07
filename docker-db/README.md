@@ -9,7 +9,7 @@
     > 
     > - Long version (for one service)
     > 
-    > - `docker-compose run -d --service-ports mysql`
+    > - `docker-compose run -d --service-ports mysql-reviewtel`
 
 
 ![image](https://w7.pngwing.com/pngs/438/430/png-transparent-creative-dog-dog-s-cartoon-dog-cartoon-puppy-pet-cute-dog-thumbnail.png)
