@@ -9,19 +9,20 @@ import javax.persistence.Id;
 public class Hotel {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private Integer rate;
+    private int id;
 
     private String name;
 
     private String address;
 
-    public Integer getRate() {
-        return rate;
+    private int city_id;
+
+    public int getId() {
+        return id;
     }
 
-
-    public void setIRate(Integer rate) {
-        this.rate = rate;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -38,5 +39,13 @@ public class Hotel {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public void setCity_id(int city_id) {
+        this.city_id = city_id;
+    }
+
+    public int getCity_id() {
+        return city_id;
     }
 }

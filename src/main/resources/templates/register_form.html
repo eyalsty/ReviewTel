@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymleaf.org" class="h-100">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <!--used for setting up bootstrap environment-->
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <!--    importing our custom main.css file-->
+    <link rel="stylesheet"
+          th:href="@{main.css}"/>
+</head>
+<body class="d-flex flex-column h-100" >
+    <div th:replace="~{/fragments/navigation :: navigation}"></div>
+    <div align="center">
+        <h1>Get average score of hotel!</h1>
+        <form action="#" th:action="@{/avg}" method="post" th:object="${country}">
+            <br>
+            <label>Country:</label>
+            <select th:field="*{name}" id="countrySelector">
+                <option th:each="p : ${countryList}" th:value="${p.id}" th:text="${p.name}" />
+            </select>
+            <br/>
+            <br/>
+            <label>City:</label>
+            <select th:field="*{name}">
+                <option th:each="p : ${cityList}" th:value="${p.id}" th:text="${p.name}" />
+            </select>
+            <br/>
+            <br/>
+            <label>Hotel:</label>
+
+            <select th:field="*{name}">
+                <option th:each="p : ${hotelList}" th:value="${p.id}" th:text="${p.name}" />
+            </select>
+        </form>
+    </div>
+    <div class="container">
+        <div th:if="${not #lists.isEmpty(reviews)}">
+            <h2>Reviews</h2>
+            <table class="table table-striped">
+                <tr>
+                    <th>Id</th>
+                    <th>national_id</th>
+                    <th>hotel_id</th>
+                    <th>negative_review</th>
+                    <th>positive_review</th>
+                    <th>score</th>
+                    <th>trip_type</th>
+                    <th>room_type</th>
+                    <th>group_composition</th>
+                    <th>vacation_length</th>
+                </tr>
+                <tr th:each="review : ${reviews}">
+                    <td th:text="${review.id}"></td>
+                    <td th:text="${review.national_id}"></td>
+                    <td th:text="${review.hotel_id}"></td>
+                    <td th:text="${review.negative_review}"></td>
+                    <td th:text="${review.positive_review}"></td>
+                    <td th:text="${review.score}"></td>
+                    <td th:text="${review.trip_type}"></td>
+                    <td th:text="${review.room_type}"></td>
+                    <td th:text="${review.guests_composition}"></td>
+                    <td th:text="${review.vacation_length}"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div th:replace="~{/fragments/footer :: footer}"></div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.js"
+            integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM="
+            crossorigin="anonymous">
+    </script>
+
+    <!--used for setting up bootstrap environment-->
+    <script>
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.js"
+    </script>
+
+    <script>
+        var activities = document.getElementById("countrySelector");
+
+        activities.addEventListener("click", function() {
+            var options = activities.querySelectorAll("option");
+            var count = options.length;
+            if(typeof(count) === "undefined" || count < 2)
+            {
+                addActivityItem();
+            }
+        });
+
+        activities.addEventListener("change", function() {
+            var value = this.options[this.selectedIndex].value;
+            alert(value);
+            $.ajax({
+                type : "POST",
+                url : "${pageContext.request.contextPath}/check",
+                data: { field1: value} ,
+                success: function(data){
+                    alert("success")
+                    alert(value)
+                }
+            });
+        });
+
+        function addActivityItem(value){
+
+
+        }
+    </script>
+</body>
+
+</html>
