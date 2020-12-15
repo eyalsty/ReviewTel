@@ -14,7 +14,7 @@ public interface CityRepository extends CrudRepository<City, Integer>{
     Collection<String> getAllCities();
 
     @Query(
-            value = "SELECT name FROM city WHERE country_id = :idx",
+            value = "SELECT * FROM city WHERE country_id = :idx",
             nativeQuery = true)
-    Collection<String> getAllCitiesByCountryId(@Param("idx") int idx);
+    Collection<City> getAllCitiesByCountryId(@Param("idx") int idx);
 }

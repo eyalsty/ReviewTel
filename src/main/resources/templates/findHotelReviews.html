@@ -20,23 +20,30 @@
     </div>
 </main>
 <div align="center">
-    <form action="#" th:action="@{/avg}" method="post" th:object="${country}">
+    <form th:object="${country}" id="x" method="post" th:action="@{/chooseCountry}">
         <br>
         <label>Country:</label>
-        <select th:field="*{name}" id="countrySelector">
+        <select th:field="*{name}" id="countrySelector" th:object="${country}">
+            <option value="-" label="-Please Select-"/>
             <option th:each="p : ${countryList}" th:value="${p.id}" th:text="${p.name}" />
         </select>
+        <input type="hidden" id="subBtn" />
+    </form>
         <br/>
+    <form th:object="${city}" id="y" method="post" th:action="@{/chooseCity}">
         <br/>
         <label>City:</label>
-        <select th:field="*{name}">
+        <select th:field="*{name}" id="citySelector" th:object="${city}">
+            <option value="-" label="-Please Select-"/>
             <option th:each="p : ${cityList}" th:value="${p.id}" th:text="${p.name}" />
         </select>
+    </form>
         <br/>
+    <form th:object="${hotel}" id="z" method="post" th:action="@{/chooseHotel}">
         <br/>
         <label>Hotel:</label>
-
-        <select th:field="*{name}">
+        <select th:field="*{name}" id="hotelSelector" th:object="${hotel}">
+            <option value="-" label="-Please Select-"/>
             <option th:each="p : ${hotelList}" th:value="${p.id}" th:text="${p.name}" />
         </select>
     </form>
@@ -84,23 +91,55 @@
 </script>
 
 <script>
-    var activities = document.getElementById("countrySelector");
 
-    activities.addEventListener("change", function() {
-        var value = this.options[this.selectedIndex].value;
+
+
+
+    function logSubmit(event) {
+        event.preventDefault();
+        alert("1");
+    }
+
+    var countryElement = document.getElementById("countrySelector");
+
+    countryElement.addEventListener("change", function() {
+        const log = document.getElementById('log');
+        const form = document.getElementById('x');
+        //form.addEventListener('submit', logSubmit);
+        form.submit();
+        //form.submit();
+        /*var value = this.options[this.selectedIndex].value;
         //alert(value);
-        $("#countrySelector").submit(function(event) {
-            $.ajax({
-                type: "POST",
-                url: window.location + "saveBook",
-                success: function (response) {
-                    alert('filters saved successfully: ');
-                },
-                error: function (e) {
-                    alert('Error while saving filters: ');
-                }
-            });
-        });
+        var x = $("#my_id").submit();
+        alert(x);*/
+    });
+
+    var cityElement = document.getElementById("citySelector");
+
+    cityElement.addEventListener("change", function() {
+        const log = document.getElementById('log');
+        const form = document.getElementById('y');
+       //form.addEventListener('submit', logSubmit);
+        form.submit();
+        //form.submit();
+        /*var value = this.options[this.selectedIndex].value;
+        //alert(value);
+        var x = $("#my_id").submit();
+        alert(x);*/
+    });
+
+    var hotelElement = document.getElementById("hotelSelector");
+
+    hotelElement.addEventListener("change", function() {
+        const log = document.getElementById('log');
+        const form = document.getElementById('z');
+        //form.addEventListener('submit', logSubmit);
+        form.submit();
+        //form.submit();
+        /*var value = this.options[this.selectedIndex].value;
+        //alert(value);
+        var x = $("#my_id").submit();
+        alert(x);*/
     });
 
     function addActivityItem(value){

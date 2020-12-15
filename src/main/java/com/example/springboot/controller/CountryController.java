@@ -50,8 +50,30 @@ public class CountryController {
         List<Hotel> hotelList = (List<Hotel>) hotelRepository.findAll();
         model.addAttribute("hotelList", hotelList);
 
-        List<Review> reviewsList = (List<Review>) reviewRepository.findAll();
-        model.addAttribute("reviews", reviewsList);
+        /*List<Review> reviewsList = (List<Review>) reviewRepository.findAll();
+        model.addAttribute("reviews", reviewsList);*/
+        return "findHotelReviews";
+    }
+
+    @PostMapping("/chooseCountry")
+    public String greetingSubmit(@ModelAttribute Country selectedCountry, Model model) {
+        Country country = new Country();
+        model.addAttribute("country", country);
+
+        List<Country> countryList = (List<Country>) countryRepository.findAll();
+        model.addAttribute("countryList", countryList);
+
+        City city = new City();
+        model.addAttribute("city", city);
+
+        List<City> cityList = (List<City>) cityRepository.getAllCitiesByCountryId(Integer.parseInt(selectedCountry.getName()));
+        model.addAttribute("cityList", cityList);
+
+        Hotel hotel = new Hotel();
+        model.addAttribute("hotel", hotel);
+
+        /*List<Hotel> hotelList = (List<Hotel>) hotelRepository.findAll();
+        model.addAttribute("hotelList", hotelList);*/
         return "findHotelReviews";
     }
 }
