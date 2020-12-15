@@ -72,8 +72,8 @@ public class CountryController {
         Hotel hotel = new Hotel();
         model.addAttribute("hotel", hotel);
 
-        /*List<Hotel> hotelList = (List<Hotel>) hotelRepository.findAll();
-        model.addAttribute("hotelList", hotelList);*/
+        List<Hotel> hotelList = (List<Hotel>) hotelRepository.findAll();
+        model.addAttribute("hotelList", hotelList);
         return "findHotelReviews";
     }
 }
