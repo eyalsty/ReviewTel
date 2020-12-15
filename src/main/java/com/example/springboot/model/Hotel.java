@@ -1,11 +1,10 @@
 package com.example.springboot.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity // This tells Hibernate to make a table out of this class
+//Error of "Cannot resolve table" can be ignored
+@Table(name = "hotels")
 public class Hotel {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)

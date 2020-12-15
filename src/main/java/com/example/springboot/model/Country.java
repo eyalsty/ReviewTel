@@ -1,12 +1,11 @@
 package com.example.springboot.model;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+//Error of "Cannot resolve table" can be ignored
+@Table(name = "countries")
 public class Country
 {
     @Id
@@ -14,11 +13,6 @@ public class Country
     private int id;
     private String name;
 
-
-    public Country()
-    {
-
-    }
 
     public void setId(int id) {
         this.id = id;

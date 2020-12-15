@@ -1,15 +1,14 @@
 package com.example.springboot.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity // This tells Hibernate to make a table out of this class
+//Error of "Cannot resolve table" can be ignored
+@Table(name = "reviews")
 public class Review {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     private java.sql.Date date;
@@ -26,9 +25,7 @@ public class Review {
 
     private String trip_type;
 
-    private String guests_composition;
-
-    private String room_type;
+    private int composition;
 
     private int vacation_length;
 
@@ -99,14 +96,6 @@ public class Review {
         return trip_type;
     }
 
-    public void setRoom_type(String room_type) {
-        this.room_type = room_type;
-    }
-
-    public String getRoom_type() {
-        return room_type;
-    }
-
     public void setVacation_length(int vacation_length) {
         this.vacation_length = vacation_length;
     }
@@ -115,11 +104,12 @@ public class Review {
         return vacation_length;
     }
 
-    public void setGuests_composition(String guests_composition) {
-        this.guests_composition = guests_composition;
+    public void setComposition(int composition) {
+        this.composition = composition;
     }
 
-    public String getGuests_composition() {
-        return guests_composition;
+    public int getComposition() {
+        return composition;
     }
+
 }

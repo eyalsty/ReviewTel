@@ -12,6 +12,7 @@ services:
     restart: always
     volumes:
       - ./mysql-dump:/docker-entrypoint-initdb.d
+      - ./tables:/tables
     environment:
       MYSQL_ROOT_PASSWORD: password1
       MYSQL_DATABASE: reviewTel_db

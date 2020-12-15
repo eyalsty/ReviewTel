@@ -1,11 +1,11 @@
 package com.example.springboot.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
+import javax.persistence.*;
 
 @Entity
+//Error of "Cannot resolve table" can be ignored
+@Table(name = "cities")
 public class City {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
