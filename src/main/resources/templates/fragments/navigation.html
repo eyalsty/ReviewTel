@@ -14,11 +14,20 @@
 
     <div class="collapse navbar-collapse" id="navbarsExample04">
         <ul class="navbar-nav mr-auto">
-            <li th:class="${activePage == 'findHotelReviews'} ? 'nav-item active' : 'nav-item'">
-                <a class="nav-link" th:href="@{/findHotelReviews}">Find Hotel Reviews <span class="sr-only">(current)</span></a>
+            <li th:class="${activePage == 'chooseCountryForAvg'} ? 'nav-item active' : 'nav-item'">
+                <a class="nav-link" th:href="@{/chooseCountryForAvg}">Find Hotel Reviews <span class="sr-only">(current)</span></a>
             </li>
-            <li th:class="${activePage == 'contact'} ? 'nav-item active' : 'nav-item'">
-                <a class="nav-link" th:href="@{/contact}">Contact</a>
+            <li th:class="${activePage == 'chooseCountryForTopFive'} ? 'nav-item active' : 'nav-item'">
+                <a class="nav-link" th:href="@{/chooseCountryForTopFive}">Top 5</a>
+            </li>
+            <li th:class="${activePage == 'chooseCountryForNationality'} ? 'nav-item active' : 'nav-item'">
+                <a class="nav-link" th:href="@{/chooseCountryForNationality}">Hotel Rated by Nationality</a>
+            </li>
+            <li th:class="${activePage == 'addReview'} ? 'nav-item active' : 'nav-item'">
+                <a class="nav-link" th:href="@{/addReview}">Add a Review</a>
+            </li>
+            <li th:class="${activePage == 'editReview'} ? 'nav-item active' : 'nav-item'">
+                <a class="nav-link" th:href="@{/editReview}">Edit a Review</a>
             </li>
         </ul>
     </div>
