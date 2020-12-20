@@ -21,14 +21,10 @@
 </main>
 <div align="center">
 
-    <form th:object="${country}" id="x" method="post" th:action="@{/chooseCityForAvg}">
-        <br>
-        <label>Country:</label>
-        <select type="number" th:field="*{id}" id="countrySelector" th:object="${country}">
-            <option type="number" th:value="-1" label="-Please Select-"/>
-            <option th:each="_country : ${countryList}" type="number" th:value="${_country.id}" th:text="${_country.name}" />
-        </select>
-        <input type="hidden" id="subBtn" />
+    <form th:object="${review}" id="x" method="post" th:action="@{/reviewForEditInserted}">
+        <label>Insert Review Id:</label>
+        <input type="number" th:field="*{id}" th:object="${review}"/>
+        <input type="submit" id="subBtn" />
     </form>
 </div>
 
@@ -41,21 +37,6 @@
 <!--used for setting up bootstrap environment-->
 <script>
     src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.js"
-</script>
-
-<script>
-
-
-
-
-    var countryElement = document.getElementById("countrySelector");
-
-    countryElement.addEventListener("change", function() {
-       // const log = document.getElementById('log');
-        const form = document.getElementById('x');
-        form.submit();
-    });
-
 </script>
 </body>
 

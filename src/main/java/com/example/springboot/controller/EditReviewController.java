@@ -32,7 +32,7 @@ public class EditReviewController {
 
     @GetMapping("/editReview")
     public String editReview(Model model) {
-        model.addAttribute("activePage","addReview");
+        model.addAttribute("activePage","addReview");`
         Country country = new Country();
         model.addAttribute("country", country);
         List<Country> countryListWithHotels = (List<Country>) countryRepository.allCountriesWithReviews();

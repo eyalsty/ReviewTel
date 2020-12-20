@@ -22,51 +22,44 @@
 <div align="center">
 
     <form th:object="${review}" id="x" method="post" th:action="@{/editReviewSubmitted}">
-        <br>
         <label>Review ID:</label>
         <label th:text="${id}"></label>
+        <br>
         <label>Country:</label>
         <label th:text="${country}"></label>
         <br/>
-        <br/>
         <label>City:</label>
-        <label th:text="${city"></label>
-        <br/>
+        <label th:text="${city}"></label>
         <br/>
         <label>Hotel:</label>
         <label th:text="${hotel}"></label>
         <br/>
-        <br/>
         <label>Nationality:</label>
         <label th:text="${nationality}"></label>
-        <br/>
         <br/>
         <label>Guests Composition:</label>
         <label th:text="${guests_composition}"></label>
         <br/>
-        <br/>
         <label>Room type:</label>
         <label th:text="${room_type}"></label>
-        <br/>
         <br/>
         <label>Trip type:</label>
         <label th:text="${trip_type}"></label>
         <br/>
-        <br/>
         <label>Vacation Length:</label>
         <label th:text="${vacation_length}"></label>
         <br/>
-        <br/>
-        <label>Score:</label>
-        <input type="number" step="0.1" max="10" min="1" th:field="*{score}" th:object="${review}"/>
-        <br/>
+        <label>Old Score:</label>
+        <label th:text="${score}"></label>
+        <br>
+        <label>  New Score:</label>
+        <input type="number" th:value="${score}" step="0.1" max="10" min="1" th:field="*{score}" th:object="${review}"/>
         <br/>
         <label>Positive Review:</label>
-        <textarea rows="10" cols="50" th:field="*{positive_review}" th:object="${review}"></textarea>
-        <br/>
+        <textarea rows="10" cols="50" th:placeholder="${positive_review}" th:field="*{positive_review}" th:object="${review}"></textarea>
         <br/>
         <label>Negative Review:</label>
-        <textarea rows="10" cols="50" th:field="*{negative_review}" th:object="${review}"></textarea>
+        <textarea rows="10" cols="50" th:placeholder="${negative_review}" th:field="*{negative_review}" th:object="${review}"></textarea>
         <br/>
         <input type="submit" id="subBtn" />
     </form>
