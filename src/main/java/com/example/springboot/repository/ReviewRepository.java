@@ -16,4 +16,11 @@ public interface ReviewRepository extends CrudRepository<Review, Integer> {
             value = "SELECT * FROM reviews WHERE hotel_id = :idx",
             nativeQuery = true)
     Collection<Review> getAllReviewsByHotelId(@Param("idx") int idx);
+
+    @Query(
+            value = "SELECT AVG(score) FROM review WHERE hotel_id = :idx",
+            nativeQuery = true)
+    double getAverageOfHotel(@Param("idx") int idx);
+
+
 }

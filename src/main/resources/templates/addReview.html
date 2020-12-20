@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymleaf.org" class="h-100">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <!--used for setting up bootstrap environment-->
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <!--    importing our custom main.css file-->
+    <link rel="stylesheet"
+          th:href="@{main.css}"/>
+</head>
+<body class="d-flex flex-column h-100" >
+<div th:replace="~{/fragments/navigation :: navigation}"></div>
+<main role="main" class="flex-shrink-0">
+    <div class="container mt-5">
+        <div class="jumbotron">
+            <h1 class="display-4">Find Hotel Reviews</h1>
+        </div>
+    </div>
+</main>
+<div align="center">
+
+    <form th:object="${review}" id="x" method="post" th:action="@{/addReviewSubmitted}">
+        <br>
+        <label>Country:</label>
+        <select>
+            <option type="number" th:value="-1" label="-Please Select-"/>
+            <option th:each="p : ${countryListWithHotels}" type="number" th:value="${p.id}" th:text="${p.name}" />
+        </select>
+        <br/>
+        <br/>
+        <label>City:</label>
+        <select>
+            <option type="number" th:value="-1" label="-Please Select-"/>
+            <option th:each="p : ${cityList}" type="number" th:value="${p.id}" th:text="${p.name}" />
+        </select>
+        <br/>
+        <br/>
+        <label>Hotel:</label>
+        <select type="number" th:field="*{hotel_id}" th:object="${review}">
+            <option type="number" th:value="-1" label="-Please Select-"/>
+            <option th:each="p : ${hotelList}" type="number" th:value="${p.id}" th:text="${p.name}" />
+        </select>
+        <br/>
+        <br/>
+        <label>Nationality:</label>
+        <select type="number" th:field="*{national_id}" th:object="${review}">
+            <option type="number" th:value="-1" label="-Please Select-"/>
+            <option th:each="p : ${allCountryList}" type="number" th:value="${p.id}" th:text="${p.name}" />
+        </select>
+        <br/>
+        <br/>
+        <label>Guests Composition:</label>
+        <select th:field="*{guests_composition}" th:object="${review}">
+            <option th:value="Solo_Traveler">Solo Traveler</option>>
+            <option label="Couple" th:value="Couple"/>
+            <option label="Family with young children" th:value="Family_with_young_children"/>
+            <option label="Family with older children" th:value="Family_with_older_children"/>
+            <option label="Group" th:value="Group"/>
+        </select>
+        <br/>
+        <br/>
+        <label>Room type:</label>
+        <select th:field="*{room_type}" th:object="${review}">
+            <option label="Single" th:value="Single"/>
+            <option label="Suite" th:value="Suite"/>
+        </select>
+        <br/>
+        <br/>
+        <label>Trip type:</label>
+        <select th:field="*{trip_type}" th:object="${review}">
+            <option label="Leisure Trip" th:value="Leisure_Trip"/>
+            <option label="Business Trip" th:value="Business_Trip"/>
+        </select>
+        <br/>
+        <br/>
+        <label>Vacation Length:</label>
+        <input type="number" step="1" max="31" min="1" th:field="*{vacation_length}" th:object="${review}"/>
+        <br/>
+        <br/>
+        <label>Score:</label>
+        <input type="number" step="0.1" max="10" min="1" th:field="*{score}" th:object="${review}"/>
+        <br/>
+        <br/>
+        <label>Positive Review:</label>
+        <textarea rows="10" cols="50" th:field="*{positive_review}" th:object="${review}"></textarea>
+        <br/>
+        <br/>
+        <label>Negative Review:</label>
+        <textarea rows="10" cols="50" th:field="*{negative_review}" th:object="${review}"></textarea>
+        <br/>
+        <input type="submit" id="subBtn" />
+    </form>
+</div>
+
+<div th:replace="~{/fragments/footer :: footer}"></div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.js"
+        integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM="
+        crossorigin="anonymous">
+</script>
+
+<!--used for setting up bootstrap environment-->
+<script>
+    src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.js"
+</script>
+</body>
+
+</html>

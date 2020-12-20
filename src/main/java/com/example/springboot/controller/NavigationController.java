@@ -9,17 +9,4 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class NavigationController {
 
-    /*@GetMapping("/info")
-    public String getInfo(Model model){
-//        an attribute used for the navigation bar to determine which tab is currently active
-        model.addAttribute("activePage","info");
-        return "info";
-    }*/
-
-    @GetMapping("/contact")
-    public String getContact(Model model){
-//        an attribute used for the navigation bar to determine which tab is currently active
-        model.addAttribute("activePage","contact");
-        return "contact";
-    }
 }

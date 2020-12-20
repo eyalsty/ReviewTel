@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymleaf.org" class="h-100">
 <head>
     <title>Getting Started: Serving Web Content</title>
@@ -10,25 +10,29 @@
     <link rel="stylesheet"
           th:href="@{main.css}"/>
 </head>
-
 <body class="d-flex flex-column h-100" >
-<!--This is the top navigation bar-->
-<!--th:replace gets "~{/relative/path/to/fragment :: name-of-fragment}-->
 <div th:replace="~{/fragments/navigation :: navigation}"></div>
-
-<!--This it the Jumbotron CSS element from Bootstrap,
- for using it the bootstrap link + script must be imported(like in this example)-->
 <main role="main" class="flex-shrink-0">
     <div class="container mt-5">
         <div class="jumbotron">
-            <h1 class="display-4">Contact Page</h1>
+            <h1 class="display-4">Top 5</h1>
         </div>
     </div>
 </main>
+<div align="center">
 
-<!--Another simple fragment example-->
+    <form th:object="${country}" id="x" method="post" th:action="@{/chooseCityForTopFive}">
+        <br>
+        <label>Country:</label>
+        <select type="number" th:field="*{id}" id="countrySelector" th:object="${country}">
+            <option type="number" th:value="-1" label="-Please Select-"/>
+            <option th:each="p : ${countryList}" type="number" th:value="${p.id}" th:text="${p.name}" />
+        </select>
+        <input type="hidden" id="subBtn" />
+    </form>
+</div>
+
 <div th:replace="~{/fragments/footer :: footer}"></div>
-
 <script src="https://code.jquery.com/jquery-3.5.1.slim.js"
         integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM="
         crossorigin="anonymous">
@@ -39,6 +43,23 @@
     src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.js"
 </script>
 
-<!--    <p>Get your greeting <a href="/greeting">here</a></p>-->
+<script>
+
+
+    function logSubmit(event) {
+        event.preventDefault();
+        alert("1");
+    }
+
+    var countryElement = document.getElementById("countrySelector");
+
+    countryElement.addEventListener("change", function() {
+        const log = document.getElementById('log');
+        const form = document.getElementById('x');
+        form.submit();
+    });
+
+</script>
 </body>
+
 </html>

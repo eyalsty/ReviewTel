@@ -21,4 +21,14 @@ public interface HotelRepository extends CrudRepository<Hotel, Integer> {
             value = "SELECT * FROM hotels WHERE city_id = :idx",
             nativeQuery = true)
     Collection<Hotel> getAllHotelsByCityId(@Param("idx") int idx);
+
+    @Query(
+            value = "SELECT hotel.name, AVG(score) as average FROM review LEFT JOIN hotel ON review.hotel_id = hotel.id WHERE hotel.city_id = :idx GROUP BY hotel_id ORDER BY average DESC LIMIT 5",
+            nativeQuery = true)
+    Collection<Object[]> getTopFive(@Param("idx") int idx);
+
+    @Query(
+            value = "SELECT country.name, AVG(score) as average FROM review LEFT JOIN country ON review.national_id = country.id WHERE review.hotel_id = :idx GROUP BY review.national_id ORDER BY average DESC ",
+            nativeQuery = true)
+    Collection<Object[]> getByNationality(@Param("idx") int idx);
 }

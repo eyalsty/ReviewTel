@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymleaf.org" class="h-100">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <!--used for setting up bootstrap environment-->
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <!--    importing our custom main.css file-->
+    <link rel="stylesheet"
+          th:href="@{main.css}"/>
+</head>
+<body class="d-flex flex-column h-100" >
+<div th:replace="~{/fragments/navigation :: navigation}"></div>
+<main role="main" class="flex-shrink-0">
+    <div class="container mt-5">
+        <div class="jumbotron">
+            <h1 class="display-4">Find Hotel Reviews</h1>
+        </div>
+    </div>
+</main>
+<div align="center">
+
+    <form th:object="${review}" id="x" method="post" th:action="@{/editReviewSubmitted}">
+        <br>
+        <label>Review ID:</label>
+        <label th:text="${id}"></label>
+        <label>Country:</label>
+        <label th:text="${country}"></label>
+        <br/>
+        <br/>
+        <label>City:</label>
+        <label th:text="${city"></label>
+        <br/>
+        <br/>
+        <label>Hotel:</label>
+        <label th:text="${hotel}"></label>
+        <br/>
+        <br/>
+        <label>Nationality:</label>
+        <label th:text="${nationality}"></label>
+        <br/>
+        <br/>
+        <label>Guests Composition:</label>
+        <label th:text="${guests_composition}"></label>
+        <br/>
+        <br/>
+        <label>Room type:</label>
+        <label th:text="${room_type}"></label>
+        <br/>
+        <br/>
+        <label>Trip type:</label>
+        <label th:text="${trip_type}"></label>
+        <br/>
+        <br/>
+        <label>Vacation Length:</label>
+        <label th:text="${vacation_length}"></label>
+        <br/>
+        <br/>
+        <label>Score:</label>
+        <input type="number" step="0.1" max="10" min="1" th:field="*{score}" th:object="${review}"/>
+        <br/>
+        <br/>
+        <label>Positive Review:</label>
+        <textarea rows="10" cols="50" th:field="*{positive_review}" th:object="${review}"></textarea>
+        <br/>
+        <br/>
+        <label>Negative Review:</label>
+        <textarea rows="10" cols="50" th:field="*{negative_review}" th:object="${review}"></textarea>
+        <br/>
+        <input type="submit" id="subBtn" />
+    </form>
+</div>
+
+<div th:replace="~{/fragments/footer :: footer}"></div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.js"
+        integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM="
+        crossorigin="anonymous">
+</script>
+
+<!--used for setting up bootstrap environment-->
+<script>
+    src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.js"
+</script>
+</body>
+
+</html>

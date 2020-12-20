@@ -20,12 +20,13 @@
     </div>
 </main>
 <div align="center">
+
     <form th:object="${country}" id="x" method="post" th:action="@{/chooseCountry}">
         <br>
         <label>Country:</label>
-        <select th:field="*{name}" id="countrySelector" th:object="${country}">
-            <option value="-" label="-Please Select-"/>
-            <option th:each="p : ${countryList}" th:value="${p.id}" th:text="${p.name}" />
+        <select type="number" th:field="*{id}" id="countrySelector" th:object="${country}">
+            <option type="number" th:value="-1" label="-Please Select-"/>
+            <option th:each="p : ${countryList}" type="number" th:value="${p.id}" th:text="${p.name}" />
         </select>
         <input type="hidden" id="subBtn" />
     </form>
@@ -33,18 +34,18 @@
     <form th:object="${city}" id="y" method="post" th:action="@{/chooseCity}">
         <br/>
         <label>City:</label>
-        <select th:field="*{name}" id="citySelector" th:object="${city}">
-            <option value="-" label="-Please Select-"/>
-            <option th:each="p : ${cityList}" th:value="${p.id}" th:text="${p.name}" />
+        <select type="number" th:field="*{id}" id="citySelector" th:object="${city}">
+            <option value="-1" label="-Please Select-"/>
+            <option type="number" th:each="p : ${cityList}" th:value="${p.id}" th:text="${p.name}" />
         </select>
     </form>
         <br/>
     <form th:object="${hotel}" id="z" method="post" th:action="@{/chooseHotel}">
         <br/>
         <label>Hotel:</label>
-        <select th:field="*{name}" id="hotelSelector" th:object="${hotel}">
-            <option value="-" label="-Please Select-"/>
-            <option th:each="p : ${hotelList}" th:value="${p.id}" th:text="${p.name}" />
+        <select type="number" th:field="*{id}" id="hotelSelector" th:object="${hotel}">
+            <option value="-1" label="-Please Select-"/>
+            <option type="number" th:each="p : ${hotelList}" th:value="${p.id}" th:text="${p.name}" />
         </select>
     </form>
 </div>
@@ -91,8 +92,6 @@
 </script>
 
 <script>
-
-
 
 
     function logSubmit(event) {
