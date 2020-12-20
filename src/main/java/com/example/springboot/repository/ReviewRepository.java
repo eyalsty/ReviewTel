@@ -13,7 +13,7 @@ import java.util.Collection;
 
 public interface ReviewRepository extends CrudRepository<Review, Integer> {
     @Query(
-            value = "SELECT * FROM review WHERE hotel_id = :idx",
+            value = "SELECT * FROM reviews WHERE hotel_id = :idx",
             nativeQuery = true)
     Collection<Review> getAllReviewsByHotelId(@Param("idx") int idx);
 }

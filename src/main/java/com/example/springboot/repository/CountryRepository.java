@@ -7,12 +7,12 @@ import java.util.Collection;
 
 public interface CountryRepository extends CrudRepository<Country, Integer>{
     @Query(
-            value = "SELECT id,name FROM country",
+            value = "SELECT id,name FROM countries",
             nativeQuery = true)
     Collection<Country> allCountries();
 
     @Query(
-            value = "SELECT name FROM country",
+            value = "SELECT name FROM countries",
             nativeQuery = true)
     Collection<String> getAllCountries();
 }

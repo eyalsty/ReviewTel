@@ -13,12 +13,12 @@ import java.util.Collection;
 
 public interface HotelRepository extends CrudRepository<Hotel, Integer> {
     @Query(
-            value = "SELECT name FROM hotel",
+            value = "SELECT name FROM hotels",
             nativeQuery = true)
     Collection<String> getAllHotelsNames();
 
     @Query(
-            value = "SELECT * FROM hotel WHERE city_id = :idx",
+            value = "SELECT * FROM hotels WHERE city_id = :idx",
             nativeQuery = true)
     Collection<Hotel> getAllHotelsByCityId(@Param("idx") int idx);
 }

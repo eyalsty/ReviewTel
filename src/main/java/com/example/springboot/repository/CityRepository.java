@@ -9,12 +9,12 @@ import java.util.Collection;
 
 public interface CityRepository extends CrudRepository<City, Integer>{
     @Query(
-            value = "SELECT name FROM city",
+            value = "SELECT name FROM cities",
             nativeQuery = true)
     Collection<String> getAllCities();
 
     @Query(
-            value = "SELECT * FROM city WHERE country_id = :idx",
+            value = "SELECT * FROM cities WHERE country_id = :idx",
             nativeQuery = true)
     Collection<City> getAllCitiesByCountryId(@Param("idx") int idx);
 }
