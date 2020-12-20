@@ -1,0 +1,3 @@
+source ~/reviewTel_db/01.sql;
+
+SET GLOBAL local_infile = 1;
