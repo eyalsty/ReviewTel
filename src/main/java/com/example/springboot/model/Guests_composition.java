@@ -5,8 +5,8 @@ import javax.persistence.*;
 
 @Entity
 //Error of "Cannot resolve table" can be ignored
-@Table(name = "compositions")
-public class Composition {
+@Table(name = "guests_compositions")
+public class Guests_composition {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private int id;

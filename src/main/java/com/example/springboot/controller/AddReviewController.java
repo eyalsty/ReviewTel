@@ -61,7 +61,7 @@ public class AddReviewController {
         review.setId(id+1);
         java.sql.Date date = new java.sql.Date(System.currentTimeMillis());
         review.setDate(date);
-        review.setGuests_composition(review.getGuests_composition().replace('_',' '));
+//        review.setGuests_composition(review.getGuests_composition().replace('_',' '));
         reviewRepository.save(review);
         return "reviewSubmitted";
     }

@@ -25,7 +25,9 @@ public class Review {
 
     private String trip_type;
 
-    private int composition;
+    private int guests_composition_id;
+
+    private int room_type_id;
 
     private int vacation_length;
 
@@ -104,12 +106,19 @@ public class Review {
         return vacation_length;
     }
 
-    public void setComposition(int composition) {
-        this.composition = composition;
+    public int getGuests_composition_id() {
+        return guests_composition_id;
     }
 
-    public int getComposition() {
-        return composition;
+    public void setGuests_composition_id(int guests_composition_id) {
+        this.guests_composition_id = guests_composition_id;
     }
 
+    public int getRoom_type_id() {
+        return room_type_id;
+    }
+
+    public void setRoom_type_id(int room_type_id) {
+        this.room_type_id = room_type_id;
+    }
 }
