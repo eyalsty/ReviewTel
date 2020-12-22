@@ -13,12 +13,12 @@ import java.util.Collection;
 
 public interface ReviewRepository extends CrudRepository<Review, Integer> {
     @Query(
-            value = "SELECT * FROM reviews WHERE hotel_id = :idx",
+            value = "SELECT * FROM reviews WHERE hotel_id = :idx ORDER BY reviews.date DESC",
             nativeQuery = true)
     Collection<Review> getAllReviewsByHotelId(@Param("idx") int idx);
 
     @Query(
-            value = "SELECT AVG(score) FROM review WHERE hotel_id = :idx",
+            value = "SELECT AVG(score) FROM reviews WHERE hotel_id = :idx",
             nativeQuery = true)
     double getAverageOfHotel(@Param("idx") int idx);
 

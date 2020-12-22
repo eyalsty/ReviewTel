@@ -9,12 +9,12 @@ import java.util.Collection;
 
 public interface CountryRepository extends CrudRepository<Country, Integer>{
     @Query(
-            value = "SELECT * FROM country LEFT JOIN city ON country.id = country_id WHERE city.country_id is not NULL ",
+            value = "SELECT * FROM countries LEFT JOIN cities ON countries.id = cities.country_id WHERE cities.country_id is not NULL ",
             nativeQuery = true)
     Collection<Country> allCountriesWithReviews();
 
     @Query(
-            value = "SELECT name FROM country",
+            value = "SELECT name FROM countries",
             nativeQuery = true)
     Collection<String> getAllCountries();
 }

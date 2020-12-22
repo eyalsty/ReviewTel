@@ -1,9 +1,6 @@
 package com.example.springboot.controller;
 
-import com.example.springboot.model.City;
-import com.example.springboot.model.Hotel;
-import com.example.springboot.model.HotelAvg;
-import com.example.springboot.model.Review;
+import com.example.springboot.model.*;
 import com.example.springboot.repository.CityRepository;
 import com.example.springboot.repository.CountryRepository;
 import com.example.springboot.repository.HotelRepository;
@@ -63,7 +60,13 @@ public class HotelController {
     @PostMapping("/showReviewsWithAvg")
     public String chooseHotel(@ModelAttribute Hotel selectedHotel, Model model) {
         List<Review> reviewsList = (List<Review>) reviewRepository.getAllReviewsByHotelId(selectedHotel.getId());
-        model.addAttribute("reviews", reviewsList);
+        List<ReviewUI> reviewUIList = new ArrayList<>();
+        for (Review review : reviewsList)
+        {
+            ReviewUI reviewUI = new ReviewUI(review);
+            reviewUIList.add(reviewUI);
+        }
+        model.addAttribute("reviews", reviewUIList);
         double avg = reviewRepository.getAverageOfHotel(selectedHotel.getId());
         avg = avg*1000;
         int temp = (int)avg;

@@ -33,24 +33,26 @@
                 <th>Id</th>
                 <!--th>national_id</th>
                 <th>hotel_id</th-->
+                <th>Date</th>
                 <th>Negative Review</th>
                 <th>Positive Review</th>
                 <th>Score</th>
                 <th>Trip type</th>
-                <th>Room type</th>
-                <th>Group Composition</th>
+                <!--th>Room type</th>
+                <th>Group Composition</th-->
                 <th>Vacation Length</th>
             </tr>
             <tr th:each="review : ${reviews}">
                 <td th:text="${review.id}"></td>
                 <!--td th:text="${review.national_id}"></td>
                 <td th:text="${review.hotel_id}"></td-->
+                <td th:text="${review.date}"></td>
                 <td th:text="${review.negative_review}"></td>
                 <td th:text="${review.positive_review}"></td>
                 <td th:text="${review.score}"></td>
                 <td th:text="${review.trip_type}"></td>
-                <td th:text="${review.room_type}"></td>
-                <td th:text="${review.guests_composition}"></td>
+                <!--td th:text="${review.room_type_id}"></td>
+                <td th:text="${review.guests_composition_id}"></td-->
                 <td th:text="${review.vacation_length}"></td>
             </tr>
         </table>
