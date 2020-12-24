@@ -9,7 +9,7 @@ import java.util.Date;
 public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
 
     private java.sql.Date date;
 
@@ -25,7 +25,7 @@ public class Review {
 
     private String trip_type;
 
-    private int guests_composition_id;
+    private Integer guests_composition_id;
 
     private int room_type_id;
 
@@ -34,11 +34,11 @@ public class Review {
     public Review() {
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -106,11 +106,11 @@ public class Review {
         return vacation_length;
     }
 
-    public int getGuests_composition_id() {
+    public Integer getGuests_composition_id() {
         return guests_composition_id;
     }
 
-    public void setGuests_composition_id(int guests_composition_id) {
+    public void setGuests_composition_id(Integer guests_composition_id) {
         this.guests_composition_id = guests_composition_id;
     }
 

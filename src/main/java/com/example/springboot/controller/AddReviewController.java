@@ -57,7 +57,7 @@ public class AddReviewController {
     @PostMapping("/addReviewSubmitted")
     public String chooseCountry(@ModelAttribute Review review, Model model) {
         List<Review> reviews = (List<Review>)reviewRepository.findAll();
-        int id = reviews.get(reviews.size()-1).getId();
+        Long id = reviews.get(reviews.size()-1).getId();
         review.setId(id+1);
         java.sql.Date date = new java.sql.Date(System.currentTimeMillis());
         review.setDate(date);

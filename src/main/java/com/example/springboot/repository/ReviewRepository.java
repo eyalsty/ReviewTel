@@ -11,7 +11,7 @@ import java.util.Collection;
 // This will be AUTO IMPLEMENTED by Spring into a Bean called hotelRepository
 // CRUD refers Create, Read, Update, Delete
 
-public interface ReviewRepository extends CrudRepository<Review, Integer> {
+public interface ReviewRepository extends CrudRepository<Review, Long> {
     @Query(
             value = "SELECT * FROM reviews WHERE hotel_id = :idx ORDER BY reviews.date DESC",
             nativeQuery = true)

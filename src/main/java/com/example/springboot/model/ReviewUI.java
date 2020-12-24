@@ -8,7 +8,7 @@ import java.util.Date;
 public class ReviewUI {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
 
     private String date;
 
@@ -42,7 +42,7 @@ public class ReviewUI {
         //this.room_type = review.getRoom_type_id();
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
@@ -80,5 +80,13 @@ public class ReviewUI {
 
     public int getVacation_length() {
         return vacation_length;
+    }
+
+    public void setGuests_composition(String guests_composition) {
+        this.guests_composition = guests_composition;
+    }
+
+    public void setRoom_type(String room_type) {
+        this.room_type = room_type;
     }
 }
