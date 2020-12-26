@@ -23,11 +23,8 @@
             <li th:class="${activePage == 'chooseCountryForNationality'} ? 'nav-item active' : 'nav-item'">
                 <a class="nav-link" th:href="@{/chooseCountryForNationality}">Hotel Rated by Nationality</a>
             </li>
-            <li th:class="${activePage == 'addReview'} ? 'nav-item active' : 'nav-item'">
-                <a class="nav-link" th:href="@{/addReview}">Add a Review</a>
-            </li>
-            <li th:class="${activePage == 'editReview'} ? 'nav-item active' : 'nav-item'">
-                <a class="nav-link" th:href="@{/editReview}">Edit a Review</a>
+            <li th:class="${activePage == 'chooseCountryForAddReview'} ? 'nav-item active' : 'nav-item'">
+                <a class="nav-link" th:href="@{/chooseCountryForAddReview}">Add a Review</a>
             </li>
         </ul>
     </div>

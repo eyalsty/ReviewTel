@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymleaf.org" class="h-100">
 <head>
+    <style>
+        label {
+            display: table-row;
+            width: 400px;
+            background-color: #e9ecef;
+        }
+    </style>
     <title>Getting Started: Serving Web Content</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <!--used for setting up bootstrap environment-->
@@ -15,7 +22,7 @@
 <main role="main" class="flex-shrink-0">
     <div class="container mt-5">
         <div class="jumbotron">
-            <h1 class="display-4">Find Hotel Reviews</h1>
+            <h1 class="display-4">Review Information</h1>
         </div>
     </div>
 </main>
@@ -24,13 +31,15 @@
     <form th:object="${review}" id="x" method="post" th:action="@{/editReviewSubmitted}">
         <br>
         <label>Review ID:</label>
-        <label th:text="${id}"></label>
+        <label th:field="*{id}" th:text="${id}" th:value="*{id}"></label>
+        <br/>
+        <br/>
         <label>Country:</label>
         <label th:text="${country}"></label>
         <br/>
         <br/>
         <label>City:</label>
-        <label th:text="${city"></label>
+        <label th:text="${city}"></label>
         <br/>
         <br/>
         <label>Hotel:</label>
@@ -58,17 +67,36 @@
         <br/>
         <br/>
         <label>Score:</label>
-        <input type="number" step="0.1" max="10" min="1" th:field="*{score}" th:object="${review}"/>
+        <label th:text="${score}"></label>
         <br/>
         <br/>
-        <label>Positive Review:</label>
+        <label>Old Positive Review:</label>
+        <br/>
+        <label th:text="${positive_review}"></label>
+        <br/>
+        <br/>
+        <label>New Positive Review:</label>
+        <br/>
+        <!--textarea rows="10" cols="50" th:field="*{positive_review}" th:placeholder="${positive_review}" th:object="${review}"></textarea-->
         <textarea rows="10" cols="50" th:field="*{positive_review}" th:object="${review}"></textarea>
         <br/>
         <br/>
-        <label>Negative Review:</label>
+        <label>Old Negative Review:</label>
+        <br/>
+        <label th:text="${negative_review}"></label>
+        <br/>
+        <br/>
+        <label>New Negative Review:</label>
+        <br/>
         <textarea rows="10" cols="50" th:field="*{negative_review}" th:object="${review}"></textarea>
         <br/>
-        <input type="submit" id="subBtn" />
+        <br/>
+        <input type="submit" id="subBtn" value="Update"/>
+    </form>
+    <br/>
+    <form method="post" th:action="@{/deleteReview}" th:object="${review}">
+        <input type="hidden" th:field="*{id}" th:value="${id}"/>
+        <input type="submit" id="delBtn" value="Delete"/>
     </form>
 </div>
 

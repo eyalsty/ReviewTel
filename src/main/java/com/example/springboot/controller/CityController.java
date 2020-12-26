@@ -2,8 +2,6 @@ package com.example.springboot.controller;
 import com.example.springboot.model.City;
 import com.example.springboot.model.Hotel;
 import com.example.springboot.model.HotelAvg;
-import com.example.springboot.repository.CityRepository;
-import com.example.springboot.repository.CountryRepository;
 import com.example.springboot.repository.HotelRepository;
 import com.example.springboot.repository.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @Controller // This means that this class is a Controller
@@ -33,7 +30,7 @@ public class CityController {
 
         List<Hotel> hotelList = (List<Hotel>) hotelRepository.getAllHotelsByCityId(selectedCity.getId());
         model.addAttribute("hotelList", hotelList);
-        return "chooseHotelForAvg";
+        return "Avg/chooseHotelForAvg";
     }
     @PostMapping("/showTopFiveHotelsInCity")
     public String showTopFive(@ModelAttribute City selectedCity, Model model) {
@@ -47,7 +44,7 @@ public class CityController {
         }
 
         model.addAttribute("topFive", topFiveHotels);
-        return "showTopFiveHotelsInCity";
+        return "TopFive/showTopFiveHotelsInCity";
     }
 
     @PostMapping("/chooseHotelForNationality")
@@ -57,7 +54,17 @@ public class CityController {
 
         List<Hotel> hotelList = (List<Hotel>) hotelRepository.getAllHotelsByCityId(selectedCity.getId());
         model.addAttribute("hotelList", hotelList);
-        return "chooseHotelForNationality";
+        return "Nationality/chooseHotelForNationality";
+    }
+
+    @PostMapping("/chooseHotelForAddReview")
+    public String chooseHotelForAddReview(@ModelAttribute City selectedCity, Model model) {
+        Hotel hotel = new Hotel();
+        model.addAttribute("hotel", hotel);
+
+        List<Hotel> hotelList = (List<Hotel>) hotelRepository.getAllHotelsByCityId(selectedCity.getId());
+        model.addAttribute("hotelList", hotelList);
+        return "AddReview/chooseHotelForAddReview";
     }
 }
 

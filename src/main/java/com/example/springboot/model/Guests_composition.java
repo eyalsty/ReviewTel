@@ -26,15 +26,15 @@ public class Guests_composition {
         this.room_type = room_type;
     }
 
-    public String getGuestsComposition() {
+    public String getRoomType() {
+        return room_type;
+    }
+
+    public String getGuests_composition() {
         return guests_composition;
     }
 
-    public void setGuestsComposition(String country_name) {
-        this.guests_composition = country_name;
-    }
-
-    public String getRoomType() {
-        return room_type;
+    public void setGuests_composition(String guests_composition) {
+        this.guests_composition = guests_composition;
     }
 }

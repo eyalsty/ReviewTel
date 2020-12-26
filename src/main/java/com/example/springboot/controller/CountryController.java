@@ -1,11 +1,8 @@
 package com.example.springboot.controller;
 import com.example.springboot.model.City;
 import com.example.springboot.model.Country;
-import com.example.springboot.model.Hotel;
 import com.example.springboot.repository.CityRepository;
 import com.example.springboot.repository.CountryRepository;
-import com.example.springboot.repository.HotelRepository;
-import com.example.springboot.repository.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,7 +26,7 @@ public class CountryController {
         List<Country> countryList = (List<Country>) countryRepository.allCountriesWithReviews();
         //List<Country> countryList = (List<Country>) countryRepository.findAll();
         model.addAttribute("countryList", countryList);
-        return "chooseCountryForAvg";
+        return "Avg/chooseCountryForAvg";
     }
 
     @PostMapping("/chooseCityForAvg")
@@ -39,7 +36,7 @@ public class CountryController {
 
         List<City> cityList = (List<City>) cityRepository.getAllCitiesByCountryId(selectedCountry.getId());
         model.addAttribute("cityList", cityList);
-        return "chooseCityForAvg";
+        return "Avg/chooseCityForAvg";
     }
 
     @GetMapping("/chooseCountryForTopFive")
@@ -50,7 +47,7 @@ public class CountryController {
         List<Country> countryList = (List<Country>) countryRepository.allCountriesWithReviews();
         //List<Country> countryList = (List<Country>) countryRepository.findAll();
         model.addAttribute("countryList", countryList);
-        return "chooseCountryForTopFive";
+        return "TopFive/chooseCountryForTopFive";
     }
 
     @PostMapping("/chooseCityForTopFive")
@@ -60,7 +57,7 @@ public class CountryController {
 
         List<City> cityList = (List<City>) cityRepository.getAllCitiesByCountryId(selectedCountry.getId());
         model.addAttribute("cityList", cityList);
-        return "chooseCityForTopFive";
+        return "TopFive/chooseCityForTopFive";
     }
 
     @GetMapping("/chooseCountryForNationality")
@@ -71,7 +68,7 @@ public class CountryController {
         List<Country> countryList = (List<Country>) countryRepository.allCountriesWithReviews();
         //List<Country> countryList = (List<Country>) countryRepository.findAll();
         model.addAttribute("countryList", countryList);
-        return "chooseCountryForNationality";
+        return "Nationality/chooseCountryForNationality";
     }
 
     @PostMapping("/chooseCityForNationality")
@@ -81,6 +78,27 @@ public class CountryController {
 
         List<City> cityList = (List<City>) cityRepository.getAllCitiesByCountryId(selectedCountry.getId());
         model.addAttribute("cityList", cityList);
-        return "chooseCityForNationality";
+        return "Nationality/chooseCityForNationality";
+    }
+
+    @GetMapping("/chooseCountryForAddReview")
+    public String chooseCountryForAddReview(Model model) {
+        model.addAttribute("activePage","chooseCountryForAvg");
+        Country country = new Country();
+        model.addAttribute("country", country);
+        List<Country> countryList = (List<Country>) countryRepository.allCountriesWithReviews();
+        //List<Country> countryList = (List<Country>) countryRepository.findAll();
+        model.addAttribute("countryList", countryList);
+        return "AddReview/chooseCountryForAddReview";
+    }
+
+    @PostMapping("/chooseCityForAddReview")
+    public String chooseCityForAddReview(@ModelAttribute Country selectedCountry, Model model) {
+        City city = new City();
+        model.addAttribute("city", city);
+
+        List<City> cityList = (List<City>) cityRepository.getAllCitiesByCountryId(selectedCountry.getId());
+        model.addAttribute("cityList", cityList);
+        return "AddReview/chooseCityForAddReview";
     }
 }
