@@ -1,8 +1,5 @@
 package com.example.springboot.controller;
-import com.example.springboot.model.City;
-import com.example.springboot.model.Country;
-import com.example.springboot.model.Hotel;
-import com.example.springboot.model.Review;
+import com.example.springboot.model.*;
 import com.example.springboot.repository.CityRepository;
 import com.example.springboot.repository.CountryRepository;
 import com.example.springboot.repository.HotelRepository;
@@ -12,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Date;
 import java.util.List;
 
 @Controller // This means that this class is a Controller
@@ -27,7 +23,7 @@ public class AddReviewController {
     private ReviewRepository reviewRepository;
 
 
-    @GetMapping("/addReview")
+   /* @GetMapping("/addReview")
     public String chooseCountryForAvg(Model model) {
         model.addAttribute("activePage","addReview");
         Country country = new Country();
@@ -52,17 +48,11 @@ public class AddReviewController {
 
         Review review = new Review();
         model.addAttribute("review", review);
-        return "addReview";
+        ReviewUI reviewUI = new ReviewUI();
+        model.addAttribute("reviewUI", reviewUI);
+        return "AddReview/addReview";
     }
-    @PostMapping("/addReviewSubmitted")
-    public String chooseCountry(@ModelAttribute Review review, Model model) {
-        List<Review> reviews = (List<Review>)reviewRepository.findAll();
-        Long id = reviews.get(reviews.size()-1).getId();
-        review.setId(id+1);
-        java.sql.Date date = new java.sql.Date(System.currentTimeMillis());
-        review.setDate(date);
-//        review.setGuests_composition(review.getGuests_composition().replace('_',' '));
-        reviewRepository.save(review);
-        return "reviewSubmitted";
-    }
+    */
+
+
 }

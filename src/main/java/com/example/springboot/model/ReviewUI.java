@@ -42,6 +42,10 @@ public class ReviewUI {
         //this.room_type = review.getRoom_type_id();
     }
 
+    public ReviewUI() {
+
+    }
+
     public Long getId() {
         return id;
     }

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymleaf.org" class="h-100">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <!--used for setting up bootstrap environment-->
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <!--    importing our custom main.css file-->
+    <link rel="stylesheet"
+          th:href="@{main.css}"/>
+</head>
+<body class="d-flex flex-column h-100" >
+<div th:replace="~{/fragments/navigation :: navigation}"></div>
+<main role="main" class="flex-shrink-0">
+    <div class="container mt-5">
+        <div class="jumbotron">
+            <h1 class="display-4">Find Hotel Reviews</h1>
+        </div>
+    </div>
+</main>
+<div align="center">
+
+    <form th:object="${country}" id="x" method="post" th:action="@{/chooseCityForAddReview}">
+        <br>
+        <label>Country:</label>
+        <select type="number" th:field="*{id}" id="countrySelector" th:object="${country}">
+            <option type="number" th:value="-1" label="-Please Select-"/>
+            <option th:each="p : ${countryList}" type="number" th:value="${p.id}" th:text="${p.name}" />
+        </select>
+        <input type="hidden" id="subBtn" />
+    </form>
+</div>
+
+<div th:replace="~{/fragments/footer :: footer}"></div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.js"
+        integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM="
+        crossorigin="anonymous">
+</script>
+
+<!--used for setting up bootstrap environment-->
+<script>
+    src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.js"
+</script>
+
+<script>
+
+
+    function logSubmit(event) {
+        event.preventDefault();
+        alert("1");
+    }
+
+    var countryElement = document.getElementById("countrySelector");
+
+    countryElement.addEventListener("change", function() {
+        const log = document.getElementById('log');
+        const form = document.getElementById('x');
+        form.submit();
+    });
+
+</script>
+</body>
+
+</html>

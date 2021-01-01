@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymleaf.org" class="h-100">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <!--used for setting up bootstrap environment-->
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <!--    importing our custom main.css file-->
+    <link rel="stylesheet"
+          th:href="@{main.css}"/>
+</head>
+<body class="d-flex flex-column h-100" >
+<div th:replace="~{/fragments/navigation :: navigation}"></div>
+<main role="main" class="flex-shrink-0">
+    <div class="container mt-5">
+        <div class="jumbotron">
+            <h1 class="display-4">Find Hotel Reviews</h1>
+        </div>
+    </div>
+    <div class="container mt-8">
+        <div class="jumbotron">
+        <h1 th:text="${avg + ' / 10'}"></h1>
+        </div>
+    </div>
+</main>
+
+<div class="container">
+    <div th:if="${not #lists.isEmpty(reviews)}">
+        <h2>Reviews</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>Date</th>
+                <th>Positive Review</th>
+                <th>Negative Review</th>
+                <th>Score</th>
+                <th>Trip type</th>
+                <th>Group Composition</th>
+                <th>Room type</th>
+                <th>Vacation Length</th>
+            </tr>
+            <tr th:each="review : ${reviews}" th:id="${review.id}">
+                <td th:text="${review.date}"></td>
+                <td th:text="${review.positive_review}"></td>
+                <td th:text="${review.negative_review}"></td>
+                <td th:text="${review.score}"></td>
+                <td th:text="${review.trip_type}"></td>
+                <td th:text="${review.guests_composition}"></td>
+                <td th:text="${review.room_type}"></td>
+                <td th:text="${review.vacation_length + ' days'}"></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div th:replace="~{/fragments/footer :: footer}"></div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.js"
+        integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM="
+        crossorigin="anonymous">
+</script>
+
+<!--used for setting up bootstrap environment-->
+<script>
+    src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.js"
+</script>
+
+</body>
+
+</html>

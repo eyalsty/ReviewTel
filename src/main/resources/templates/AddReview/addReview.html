@@ -22,49 +22,22 @@
 <div align="center">
 
     <form th:object="${review}" id="x" method="post" th:action="@{/addReviewSubmitted}">
-        <br>
-        <label>Country:</label>
-        <select>
-            <option type="number" th:value="-1" label="-Please Select-"/>
-            <option th:each="p : ${countryListWithHotels}" type="number" th:value="${p.id}" th:text="${p.name}" />
-        </select>
-        <br/>
-        <br/>
-        <label>City:</label>
-        <select>
-            <option type="number" th:value="-1" label="-Please Select-"/>
-            <option th:each="p : ${cityList}" type="number" th:value="${p.id}" th:text="${p.name}" />
-        </select>
-        <br/>
-        <br/>
-        <label>Hotel:</label>
-        <select type="number" th:field="*{hotel_id}" th:object="${review}">
-            <option type="number" th:value="-1" label="-Please Select-"/>
-            <option th:each="p : ${hotelList}" type="number" th:value="${p.id}" th:text="${p.name}" />
-        </select>
-        <br/>
-        <br/>
         <label>Nationality:</label>
-        <select type="number" th:field="*{national_id}" th:object="${review}">
-            <option type="number" th:value="-1" label="-Please Select-"/>
-            <option th:each="p : ${allCountryList}" type="number" th:value="${p.id}" th:text="${p.name}" />
+        <select th:field="*{id}" th:object="${country}">
+            <option th:each="p : ${countryList}" type="number" th:value="${p.id}" th:text="${p.name}" />
         </select>
         <br/>
         <br/>
+
         <label>Guests Composition:</label>
-        <select th:field="*{guests_composition}" th:object="${review}">
-            <option th:value="Solo_Traveler">Solo Traveler</option>>
-            <option label="Couple" th:value="Couple"/>
-            <option label="Family with young children" th:value="Family_with_young_children"/>
-            <option label="Family with older children" th:value="Family_with_older_children"/>
-            <option label="Group" th:value="Group"/>
+        <select th:field="*{guests_composition_id}" th:object="${review}">
+            <option th:each="p : ${guests_compositionList}" type="number" th:value="${p.id}" th:text="${p.guests_composition}" />
         </select>
         <br/>
         <br/>
         <label>Room type:</label>
-        <select th:field="*{room_type}" th:object="${review}">
-            <option label="Single" th:value="Single"/>
-            <option label="Suite" th:value="Suite"/>
+        <select th:field="*{id}" th:object="${room_type}">
+            <option th:each="p : ${room_typeList}" type="number" th:value="${p.id}" th:text="${p.room_type}" />
         </select>
         <br/>
         <br/>
@@ -84,10 +57,12 @@
         <br/>
         <br/>
         <label>Positive Review:</label>
+        <br/>
         <textarea rows="10" cols="50" th:field="*{positive_review}" th:object="${review}"></textarea>
         <br/>
         <br/>
         <label>Negative Review:</label>
+        <br/>
         <textarea rows="10" cols="50" th:field="*{negative_review}" th:object="${review}"></textarea>
         <br/>
         <input type="submit" id="subBtn" />

@@ -33,6 +33,8 @@ public class HotelController {
     @Autowired
     private TripTypeRepository tripTypeRepository;
 
+    private int currentHotelId;
+
     @PostMapping(path = "/add") // Map ONLY POST Requests
     public @ResponseBody
     String addNewHotel(@RequestParam int id, @RequestParam String name
@@ -110,9 +112,14 @@ public class HotelController {
         avg = (double)temp/10;
         String average = "Hotel's average score: " + Double.toString(avg);
         model.addAttribute("avg", average);
-        return "showReviewsWithAvg";
+        Admin admin = Admin.getInstance();
+        admin.setConnection("123456");
+        if(admin.isConnected())
+        {
+            return "Avg/showReviewsWithAvgForAdmin";
+        }
+        return "Avg/showReviewsWithAvg";
     }
-
 
     @PostMapping("/showHotelByNationality")
     public String showHotelByNationality(@ModelAttribute City selectedCity, Model model) {
@@ -126,6 +133,39 @@ public class HotelController {
         }
 
         model.addAttribute("nationalities", nationalitiesAvg);
-        return "showHotelByNationality";
+        return "Nationality/showHotelByNationality";
+    }
+
+
+    @PostMapping("/addReview")
+    public String addReview(@ModelAttribute Hotel selectedHotel, Model model) {
+        Review review = new Review();
+        currentHotelId = selectedHotel.getId();
+        model.addAttribute("review", review);
+        ReviewUI reviewUI = new ReviewUI();
+        model.addAttribute("reviewUI", reviewUI);
+        List<Guests_composition> guests_compositionList = (List<Guests_composition>)guestsCompositionRepository.findAll();
+        model.addAttribute("guests_compositionList", guests_compositionList);
+        Country country = new Country();
+        model.addAttribute("country", country);
+        List<Country> countryList = (List<Country>)countryRepository.findAll();
+        model.addAttribute("countryList", countryList);
+        Room_type room_type = new Room_type();
+        model.addAttribute("room_type", room_type);
+        List<Room_type> room_typeList = (List<Room_type>)roomTypeRepository.findAll();
+        model.addAttribute("room_typeList", room_typeList);
+        return "AddReview/addReview";
+    }
+
+    @PostMapping("/addReviewSubmitted")
+    public String chooseCountry(@ModelAttribute Review review, Model model) {
+        List<Review> reviews = (List<Review>)reviewRepository.findAll();
+        Long id = reviews.get(reviews.size()-1).getId();
+        review.setId(id+1);
+        review.setHotel_id(currentHotelId);
+        java.sql.Date date = new java.sql.Date(System.currentTimeMillis());
+        review.setDate(date);
+        reviewRepository.save(review);
+        return "reviewSubmitted";
     }
 }
