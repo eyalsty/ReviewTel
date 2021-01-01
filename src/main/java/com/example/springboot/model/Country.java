@@ -13,7 +13,6 @@ public class Country
     private int id;
     private String name;
 
-
     public void setId(int id) {
         this.id = id;
     }

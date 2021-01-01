@@ -8,17 +8,17 @@ import java.util.Date;
 public class ReviewUI {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private final Long id;
 
-    private String date;
+    private final String date;
 
     private String national_name;
 
-    private String positive_review;
+    private final String positive_review;
 
-    private String negative_review;
+    private final String negative_review;
 
-    private double score;
+    private final double score;
 
     private String trip_type;
 
@@ -26,14 +26,14 @@ public class ReviewUI {
 
     private String room_type;
 
-    private int vacation_length;
+    private final int vacation_length;
 
     public ReviewUI(Review review) {
         this.id = review.getId();
         this.positive_review = review.getPositive_review();
         this.negative_review = review.getNegative_review();
         this.score = review.getScore();
-        this.trip_type = review.getTrip_type();
+//        this.trip_type = review.getTrip_type();
         this.vacation_length = review.getVacation_length();
         DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
         this.date = df.format(review.getDate());
@@ -88,5 +88,9 @@ public class ReviewUI {
 
     public void setRoom_type(String room_type) {
         this.room_type = room_type;
+    }
+
+    public void setTrip_type(String trip_type) {
+        this.trip_type = trip_type;
     }
 }

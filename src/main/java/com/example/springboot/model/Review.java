@@ -13,9 +13,9 @@ public class Review {
 
     private java.sql.Date date;
 
-    private int hotel_id;
+    private Integer hotel_id;
 
-    private int national_id;
+    private Integer national_id;
 
     private String positive_review;
 
@@ -23,13 +23,13 @@ public class Review {
 
     private double score;
 
-    private String trip_type;
+    private Integer trip_type_id;
 
     private Integer guests_composition_id;
 
-    private int room_type_id;
+    private Integer room_type_id;
 
-    private int vacation_length;
+    private Integer vacation_length;
 
     public Review() {
     }
@@ -90,12 +90,12 @@ public class Review {
         return score;
     }
 
-    public void setTrip_type(String trip_type) {
-        this.trip_type = trip_type;
+    public void setTrip_type_id(Integer trip_type_id) {
+        this.trip_type_id = trip_type_id;
     }
 
-    public String getTrip_type() {
-        return trip_type;
+    public Integer getTrip_type_id() {
+        return trip_type_id;
     }
 
     public void setVacation_length(int vacation_length) {

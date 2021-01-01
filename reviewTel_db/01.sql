@@ -33,6 +33,12 @@ CREATE TABLE room_types (
     PRIMARY KEY (id)
 );
 
+CREATE TABLE trip_types (
+    id SMALLINT NOT NULL AUTO_INCREMENT,
+    trip_type VARCHAR(50) NOT NULL,
+    PRIMARY KEY (id)
+);
+
 CREATE TABLE reviews (
     id MEDIUMINT NOT NULL AUTO_INCREMENT,
     hotel_id SMALLINT  NOT NULL,
@@ -41,7 +47,7 @@ CREATE TABLE reviews (
     positive_review VARCHAR(5000) NOT NULL,
     negative_review VARCHAR(5000) NOT NULL,
     score FLOAT,
-    trip_type VARCHAR(100)  NOT NULL,
+    trip_type_id SMALLINT NOT NULL,
     guests_composition_id SMALLINT NOT NULL,
     room_type_id SMALLINT NOT NULL,
     vacation_length SMALLINT,
@@ -49,7 +55,8 @@ CREATE TABLE reviews (
     FOREIGN KEY (hotel_id) REFERENCES hotels(id),
     FOREIGN KEY (national_id) REFERENCES countries(id),
     FOREIGN KEY (guests_composition_id) REFERENCES guests_compositions(id),
-    FOREIGN KEY (room_type_id) REFERENCES room_types(id)
+    FOREIGN KEY (room_type_id) REFERENCES room_types(id),
+    FOREIGN KEY (trip_type_id) REFERENCES trip_types(id)
 );
 
 LOAD DATA LOCAL INFILE "~/reviewTel_db/countries_table.csv" INTO TABLE countries
@@ -82,9 +89,15 @@ LINES TERMINATED BY '\n'
 IGNORE 1 LINES
 (id,room_type);
 
+LOAD DATA LOCAL INFILE "~/reviewTel_db/trip_types_table.csv" INTO TABLE trip_types
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES
+(id,trip_type);
+
 LOAD DATA LOCAL INFILE "~/reviewTel_db/reviews_table.csv" INTO TABLE reviews
 FIELDS TERMINATED BY ','
 LINES TERMINATED BY '\n'
 IGNORE 1 LINES
-(id,hotel_id,@datevar,national_id,negative_review,positive_review,score,trip_type,guests_composition_id,room_type_id,vacation_length)
+(id,hotel_id,@datevar,national_id,negative_review,positive_review,score,trip_type_id,guests_composition_id,room_type_id,vacation_length)
 set date=STR_TO_DATE(@datevar, '%m/%d/%Y');

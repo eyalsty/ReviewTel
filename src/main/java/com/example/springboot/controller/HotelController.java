@@ -30,6 +30,9 @@ public class HotelController {
     @Autowired
     private RoomTypeRepository roomTypeRepository;
 
+    @Autowired
+    private TripTypeRepository tripTypeRepository;
+
     @PostMapping(path = "/add") // Map ONLY POST Requests
     public @ResponseBody
     String addNewHotel(@RequestParam int id, @RequestParam String name
@@ -87,11 +90,18 @@ public class HotelController {
             if (optionalRoomT.isPresent()) {
                 reviewUI.setRoom_type(optionalRoomT.get().getRoom_type());
             } else {
-                reviewUI.setGuests_composition("N/A");
+                reviewUI.setRoom_type("N/A");
+            }
+
+            Integer trip_type_id = review.getTrip_type_id();
+            var optionalTripT = tripTypeRepository.findById(trip_type_id);
+            if (optionalTripT.isPresent()) {
+                reviewUI.setTrip_type(optionalTripT.get().getTrip_type());
+            } else {
+                reviewUI.setTrip_type("N/A");
             }
 
             reviewUIList.add(reviewUI);
-
         }
         model.addAttribute("reviews", reviewUIList);
         double avg = reviewRepository.getAverageOfHotel(selectedHotel.getId());
