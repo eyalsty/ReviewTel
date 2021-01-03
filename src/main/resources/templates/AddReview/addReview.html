@@ -23,7 +23,7 @@
 
     <form th:object="${review}" id="x" method="post" th:action="@{/addReviewSubmitted}">
         <label>Nationality:</label>
-        <select th:field="*{id}" th:object="${country}">
+        <select th:field="*{national_id}" th:object="${review}">
             <option th:each="p : ${countryList}" type="number" th:value="${p.id}" th:text="${p.name}" />
         </select>
         <br/>
@@ -36,13 +36,13 @@
         <br/>
         <br/>
         <label>Room type:</label>
-        <select th:field="*{id}" th:object="${room_type}">
+        <select th:field="*{room_type_id}" th:object="${review}">
             <option th:each="p : ${room_typeList}" type="number" th:value="${p.id}" th:text="${p.room_type}" />
         </select>
         <br/>
         <br/>
         <label>Trip type:</label>
-        <select th:field="*{id}" th:object="${trip_type}">
+        <select th:field="*{trip_type_id}" th:object="${review}">
             <option th:each="p : ${trip_typeList}" type="number" th:value="${p.id}" th:text="${p.trip_type}" />
         </select>
         <br/>

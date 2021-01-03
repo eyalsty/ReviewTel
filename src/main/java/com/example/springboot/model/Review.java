@@ -54,7 +54,7 @@ public class Review {
         this.hotel_id = hotel_id;
     }
 
-    public int getHotel_id() {
+    public Integer getHotel_id() {
         return hotel_id;
     }
 
@@ -62,7 +62,7 @@ public class Review {
         this.national_id = national_id;
     }
 
-    public int getNational_id() {
+    public Integer getNational_id() {
         return national_id;
     }
 
@@ -114,7 +114,7 @@ public class Review {
         this.guests_composition_id = guests_composition_id;
     }
 
-    public int getRoom_type_id() {
+    public Integer getRoom_type_id() {
         return room_type_id;
     }
 

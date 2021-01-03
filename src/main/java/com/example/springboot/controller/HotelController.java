@@ -149,7 +149,8 @@ public class HotelController {
         model.addAttribute("room_type", room_type);
         List<Room_type> room_typeList = (List<Room_type>) roomTypeRepository.findAll();
         model.addAttribute("room_typeList", room_typeList);
-        model.addAttribute("trip_type", room_type);
+        Trip_type trip_type = new Trip_type();
+        model.addAttribute("trip_type", trip_type);
         List<Trip_type> trip_typeList = (List<Trip_type>) tripTypeRepository.findAll();
         model.addAttribute("trip_typeList", trip_typeList);
         return "AddReview/addReview";

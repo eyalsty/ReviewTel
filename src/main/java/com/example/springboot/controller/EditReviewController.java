@@ -94,8 +94,14 @@ public class EditReviewController {
         RedirectView redirectView = new RedirectView();
         try {
             Optional<Review> curReview = reviewRepository.findById(currentReviewId);
-            curReview.get().setPositive_review(review.getPositive_review());
-            curReview.get().setNegative_review(review.getNegative_review());
+            if (null != review.getPositive_review() && "" != review.getPositive_review())
+            {
+                curReview.get().setPositive_review(review.getPositive_review());
+            }
+            if (null != review.getNegative_review() && "" != review.getNegative_review())
+            {
+                curReview.get().setNegative_review(review.getNegative_review());
+            }
             reviewRepository.save(curReview.get());
             redirectView.setUrl("http://localhost:8080/pageReviewUpdated");
             return redirectView;
