@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymleaf.org" class="h-100">
 <head>
-    <title>Getting Started: Serving Web Content</title>
+    <title>ReviewTel App</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <!--used for setting up bootstrap environment-->
     <link rel="stylesheet"
@@ -27,10 +27,10 @@
 </main>
 
 <div class="container">
-    <form class="form-signin" method="GET" th:action="@{/login}">
-        <div class="form-group">
-            <button class="btn btn-lg btn-primary btn-block" th:href="@{/login}">Manage Admin Access</button>
-        </div>
+    <form class="form-signin" method="POST" th:action="@{/login}">
+        <label>Login as admin</label>
+        <input type="password" name="password" id="password" class="form-control" placeholder="Password">
+        <label class="has-error" th:text="${errorText}"></label>
     </form>
 </div>
 

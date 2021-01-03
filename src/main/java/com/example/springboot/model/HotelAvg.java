@@ -30,9 +30,9 @@ public class HotelAvg {
     }
     private void twoDigitForDouble()
     {
-        avg = avg*1000;
+        avg = avg*10;
         int temp = (int)avg;
-        avg = (double)temp/1000;
+        avg = (double)temp/10;
     }
 
 }

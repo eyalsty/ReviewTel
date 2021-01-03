@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymleaf.org" class="h-100">
 <head>
     <title>ReviewTel App</title>
@@ -10,27 +10,26 @@
     <link rel="stylesheet"
           th:href="@{main.css}"/>
 </head>
+
 <body class="d-flex flex-column h-100" >
+<!--This is the top navigation bar-->
+<!--th:replace gets "~{/relative/path/to/fragment :: name-of-fragment}-->
 <div th:replace="~{/fragments/navigation :: navigation}"></div>
+
+<!--This it the Jumbotron CSS element from Bootstrap,
+ for using it the bootstrap link + script must be imported(like in this example)-->
 <main role="main" class="flex-shrink-0">
     <div class="container mt-5">
         <div class="jumbotron">
-            <h1 class="display-4" align="center">Add new review - choose hotel</h1>
+            <h1 class="display-4">Logged in as Admin</h1>
         </div>
     </div>
 </main>
-<div align="center">
-    <form th:object="${hotel}" id="z" method="post" th:action="@{/addReview}">
-        <br/>
-        <label>Hotel:</label>
-        <select type="number" th:field="*{id}" id="hotelSelector" th:object="${hotel}">
-            <option value="-1" label="-Please Select-"/>
-            <option type="number" th:each="p : ${hotelList}" th:value="${p.id}" th:text="${p.name}" />
-        </select>
-    </form>
-</div>
 
+
+<!--Another simple fragment example-->
 <div th:replace="~{/fragments/footer :: footer}"></div>
+
 <script src="https://code.jquery.com/jquery-3.5.1.slim.js"
         integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM="
         crossorigin="anonymous">
@@ -38,24 +37,9 @@
 
 <!--used for setting up bootstrap environment-->
 <script>
-    src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.js"
+    src = "https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.js"
 </script>
 
-<script>
-
-    var hotelElement = document.getElementById("hotelSelector");
-
-    hotelElement.addEventListener("change", function() {
-        const log = document.getElementById('log');
-        const form = document.getElementById('z');
-        form.submit();
-    });
-
-    function addActivityItem(value){
-
-
-    }
-</script>
+<!--    <p>Get your greeting <a href="/greeting">here</a></p>-->
 </body>
-
 </html>

@@ -102,7 +102,7 @@ public class Review {
         this.vacation_length = vacation_length;
     }
 
-    public int getVacation_length() {
+    public Integer getVacation_length() {
         return vacation_length;
     }
 

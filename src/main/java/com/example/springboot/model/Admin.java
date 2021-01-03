@@ -12,9 +12,10 @@ public class Admin
     {
     }
 
-    public void setConnection(String password)
+    public boolean setConnection(String password)
     {
         hasConnection = password.equals("123456");
+        return hasConnection;
     }
 
     public boolean isConnected()
