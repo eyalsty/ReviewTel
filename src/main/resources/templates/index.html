@@ -14,7 +14,8 @@
 <body class="d-flex flex-column h-100" >
 <!--This is the top navigation bar-->
 <!--th:replace gets "~{/relative/path/to/fragment :: name-of-fragment}-->
-<div th:replace="~{/fragments/navigation :: navigation}"></div>
+<!--div th:replace="~{/fragments/navigation :: navigation}"></div-->
+<div th:replace="~{fragments/navigation :: navigation}"></div>
 
 <!--This it the Jumbotron CSS element from Bootstrap,
  for using it the bootstrap link + script must be imported(like in this example)-->
@@ -35,7 +36,7 @@
 </div>
 
 <!--Another simple fragment example-->
-<div th:replace="~{/fragments/footer :: footer}"></div>
+<div th:replace="~{fragments/footer :: footer}"></div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.js"
         integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM="
