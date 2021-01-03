@@ -14,7 +14,7 @@ public class Admin
 
     public void setConnection(String password)
     {
-        hasConnection = password=="123456";
+        hasConnection = password.equals("123456");
     }
 
     public boolean isConnected()

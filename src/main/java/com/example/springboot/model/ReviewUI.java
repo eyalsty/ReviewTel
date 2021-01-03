@@ -8,17 +8,17 @@ import java.util.Date;
 public class ReviewUI {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private final Long id;
+    private Long id;
 
-    private final String date;
+    private String date;
 
     private String national_name;
 
-    private final String positive_review;
+    private String positive_review;
 
-    private final String negative_review;
+    private String negative_review;
 
-    private final double score;
+    private double score;
 
     private String trip_type;
 
@@ -26,7 +26,7 @@ public class ReviewUI {
 
     private String room_type;
 
-    private final int vacation_length;
+    private int vacation_length;
 
     public ReviewUI(Review review) {
         this.id = review.getId();

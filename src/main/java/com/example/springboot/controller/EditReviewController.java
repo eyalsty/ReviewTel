@@ -28,7 +28,8 @@ public class EditReviewController {
     private GuestsCompositionRepository guestsCompositionRepository;
     @Autowired
     private RoomTypeRepository roomTypeRepository;
-
+    @Autowired
+    private TripTypeRepository tripTypeRepository;
 
     private long currentReviewId;
 
@@ -53,9 +54,6 @@ public class EditReviewController {
             String negative_review = review.get().getNegative_review();
             model.addAttribute("negative_review",negative_review);
 
-            String trip_type = review.get().getTrip_type();
-            model.addAttribute("trip_type",trip_type);
-
             int nationalityId = review.get().getNational_id();
             Optional<Country> nationality = countryRepository.findById(nationalityId);
             model.addAttribute("nationality",nationality.get().getName());
@@ -67,6 +65,10 @@ public class EditReviewController {
             int room_type_id = review.get().getRoom_type_id();
             Optional<Room_type> room_type = roomTypeRepository.findById(room_type_id);
             model.addAttribute("room_type",room_type.get().getRoom_type());
+
+            int trip_type_id = review.get().getTrip_type_id();
+            Optional<Trip_type> trip_type = tripTypeRepository.findById(trip_type_id);
+            model.addAttribute("trip_type",trip_type.get().getTrip_type());
 
             int hotel_id = review.get().getHotel_id();
             Optional<Hotel> hotel = hotelRepository.findById(hotel_id);

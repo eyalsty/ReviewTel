@@ -15,7 +15,7 @@
 <main role="main" class="flex-shrink-0">
     <div class="container mt-5">
         <div class="jumbotron">
-            <h1 class="display-4">Find Hotel Reviews</h1>
+            <h1 class="display-4" align="center">Add new review</h1>
         </div>
     </div>
 </main>
@@ -42,9 +42,8 @@
         <br/>
         <br/>
         <label>Trip type:</label>
-        <select th:field="*{trip_type}" th:object="${review}">
-            <option label="Leisure Trip" th:value="Leisure_Trip"/>
-            <option label="Business Trip" th:value="Business_Trip"/>
+        <select th:field="*{id}" th:object="${trip_type}">
+            <option th:each="p : ${trip_typeList}" type="number" th:value="${p.id}" th:text="${p.trip_type}" />
         </select>
         <br/>
         <br/>

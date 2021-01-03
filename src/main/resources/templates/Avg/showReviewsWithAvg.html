@@ -15,12 +15,12 @@
 <main role="main" class="flex-shrink-0">
     <div class="container mt-5">
         <div class="jumbotron">
-            <h1 class="display-4">Find Hotel Reviews</h1>
+            <h1 th:text="${chosenHotelText}"></h1>
         </div>
     </div>
     <div class="container mt-8">
         <div class="jumbotron">
-        <h1 th:text="${avg + ' / 10'}"></h1>
+            <h1 th:text="${avg + ' / 10'}"></h1>
         </div>
     </div>
 </main>

@@ -83,7 +83,7 @@ public class CountryController {
 
     @GetMapping("/chooseCountryForAddReview")
     public String chooseCountryForAddReview(Model model) {
-        model.addAttribute("activePage","chooseCountryForAvg");
+        model.addAttribute("activePage","chooseCountryForAddReview");
         Country country = new Country();
         model.addAttribute("country", country);
         List<Country> countryList = (List<Country>) countryRepository.allCountriesWithReviews();

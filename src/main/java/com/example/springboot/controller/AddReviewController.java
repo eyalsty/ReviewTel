@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
+//TODO REDUNDANT
+
 @Controller // This means that this class is a Controller
 public class AddReviewController {
     @Autowired

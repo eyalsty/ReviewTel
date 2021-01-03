@@ -66,13 +66,12 @@ public class HotelController {
 
     @PostMapping("/showReviewsWithAvg")
     public String chooseHotel(@ModelAttribute Hotel selectedHotel, Model model) {
-//        model.addAttribute("hotelName", selectedHotel.getName());
-//        System.out.println(selectedHotel.getId());
-//        System.out.println(selectedHotel.getName());
-//        City selectedCity = cityRepository.findById(selectedHotel.getCity_id()).get();
-//        model.addAttribute("cityName", selectedCity.getName());
-//        Country selectedCountry = countryRepository.findById(selectedCity.getCountry_id()).get();
-//        model.addAttribute("countryName", selectedCountry.getName());
+        Integer hotel_id = selectedHotel.getId();
+        selectedHotel = hotelRepository.findById(hotel_id).get();
+
+        City selectedCity = cityRepository.findById(selectedHotel.getCity_id()).get();
+        Country selectedCountry = countryRepository.findById(selectedCity.getCountry_id()).get();
+        model.addAttribute("chosenHotelText",selectedHotel.getName() + " in " + selectedCity.getName() +", " + selectedCountry.getName() );
 
         List<Review> reviewsList = (List<Review>) reviewRepository.getAllReviewsByHotelId(selectedHotel.getId());
         List<ReviewUI> reviewUIList = new ArrayList<>();
@@ -82,7 +81,7 @@ public class HotelController {
             Integer guestCompositionId = review.getGuests_composition_id();
             var optionalGuests_composition = guestsCompositionRepository.findById(guestCompositionId);
             if (optionalGuests_composition.isPresent()) {
-                reviewUI.setGuests_composition(optionalGuests_composition.get().getGuestsComposition());
+                reviewUI.setGuests_composition(optionalGuests_composition.get().getGuests_composition());
             } else {
                 reviewUI.setGuests_composition("N/A");
             }
@@ -110,8 +109,8 @@ public class HotelController {
         avg = avg*10;
         int temp = (int)avg;
         avg = (double)temp/10;
-        String average = "Hotel's average score: " + Double.toString(avg);
-        model.addAttribute("avg", average);
+        String displayAvgText = "Hotel's average score: " + Double.toString(avg);
+        model.addAttribute("avg", displayAvgText);
         Admin admin = Admin.getInstance();
         admin.setConnection("123456");
         if(admin.isConnected())
@@ -154,6 +153,9 @@ public class HotelController {
         model.addAttribute("room_type", room_type);
         List<Room_type> room_typeList = (List<Room_type>)roomTypeRepository.findAll();
         model.addAttribute("room_typeList", room_typeList);
+        model.addAttribute("trip_type", room_type);
+        List<Trip_type> trip_typeList = (List<Trip_type>)tripTypeRepository.findAll();
+        model.addAttribute("trip_typeList", trip_typeList);
         return "AddReview/addReview";
     }
 

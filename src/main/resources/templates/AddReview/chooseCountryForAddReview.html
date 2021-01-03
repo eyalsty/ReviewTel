@@ -15,7 +15,7 @@
 <main role="main" class="flex-shrink-0">
     <div class="container mt-5">
         <div class="jumbotron">
-            <h1 class="display-4">Find Hotel Reviews</h1>
+            <h1 class="display-4" align="center">Add new review - choose country</h1>
         </div>
     </div>
 </main>
@@ -29,6 +29,7 @@
             <option th:each="p : ${countryList}" type="number" th:value="${p.id}" th:text="${p.name}" />
         </select>
         <input type="hidden" id="subBtn" />
+        <input type="hidden" name="hi" value="hii"/>
     </form>
 </div>
 

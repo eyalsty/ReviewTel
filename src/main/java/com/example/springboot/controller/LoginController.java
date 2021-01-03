@@ -14,12 +14,24 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+//TODO REDUNDANT
+
 @RestController
 
  // This means URL's start with /demo (after Application path)
-public class GeneralController {
-    @PostMapping("/saveBook")
-    public @ResponseBody String saveFilters(){
-        return "hey";
+public class LoginController {
+
+
+
+    @GetMapping("/login")
+    public String login(Model model, String error, String logout) {
+
+        if (error != null)
+            model.addAttribute("error", "Your username and password is invalid.");
+
+        if (logout != null)
+            model.addAttribute("message", "You have been logged out successfully.");
+
+        return "login";
     }
 }
