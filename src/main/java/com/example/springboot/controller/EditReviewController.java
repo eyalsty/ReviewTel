@@ -33,6 +33,7 @@ public class EditReviewController {
 
     private long currentReviewId;
 
+    // adding a review as an attribute for editing it in the returned html page
     @GetMapping("/editReview")
     public String editReview(Model model, @RequestParam String id) {
         currentReviewId = Long.parseLong(id);
@@ -89,6 +90,8 @@ public class EditReviewController {
             return "pageNotAvailable";
         }
     }
+
+    // checking whether a positive review or negative review changed and update changes in database
     @PostMapping("/editReviewSubmitted")
     public RedirectView chooseCountry(@ModelAttribute Review review, Model model) {
         RedirectView redirectView = new RedirectView();
@@ -112,20 +115,23 @@ public class EditReviewController {
             return redirectView;
         }
     }
+
+    // deleting review from database
     @PostMapping("/deleteReview")
     public RedirectView deleteRedirect() {
         reviewRepository.deleteById(currentReviewId);
-        //Implement delete
-
         RedirectView redirectView = new RedirectView();
         redirectView.setUrl("http://localhost:8080/pageReviewDeleted/");
         return redirectView;
     }
 
+    // notify user that update succeeded
     @GetMapping("/pageReviewUpdated")
     public String reviewUpdated() {
         return "pageReviewUpdated";
     }
+
+    // notify user that delete succeeded
     @GetMapping("/pageReviewDeleted")
     public String reviewDeleted() {
         return "pageReviewDeleted";

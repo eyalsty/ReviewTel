@@ -18,7 +18,7 @@ public interface HotelRepository extends CrudRepository<Hotel, Integer> {
     Collection<String> getAllHotelsNames();
 
     @Query(
-            value = "SELECT * FROM hotels WHERE city_id = :idx",
+            value = "SELECT * FROM hotels WHERE city_id = :idx ORDER BY hotels.name ASC",
             nativeQuery = true)
     Collection<Hotel> getAllHotelsByCityId(@Param("idx") int idx);
 

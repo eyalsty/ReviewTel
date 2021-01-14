@@ -1,9 +1,9 @@
 package com.example.springboot.model;
 
-public class HotelAvg {
+public class GeneralObjWithAvg {
     private String name;
     private double avg;
-    public HotelAvg()
+    public GeneralObjWithAvg()
     {
 
     }

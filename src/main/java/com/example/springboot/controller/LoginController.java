@@ -16,7 +16,7 @@ import java.util.List;
 // This means URL's start with /demo (after Application path)
 public class LoginController {
 
-
+    // if user tries to login
     @PostMapping("/login")
     public String login(Model model, String password) {
         Admin admin = Admin.getInstance();
@@ -24,6 +24,7 @@ public class LoginController {
         return admin.setConnection(password) ? "adminHomePage" : "index";
     }
 
+    // if user tries go to home page
     @GetMapping("/")
     public String welcome(Model model) {
         Admin admin = Admin.getInstance();

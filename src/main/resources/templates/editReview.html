@@ -30,10 +30,6 @@
 
     <form th:object="${review}" id="x" method="post" th:action="@{/editReviewSubmitted}">
         <br>
-        <label>Review ID:</label>
-        <label th:field="*{id}" th:text="${id}" th:value="*{id}"></label>
-        <br/>
-        <br/>
         <label>Country:</label>
         <label th:text="${country}"></label>
         <br/>

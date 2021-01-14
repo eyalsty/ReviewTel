@@ -17,18 +17,20 @@ public class CountryController {
     @Autowired
     private CityRepository cityRepository;
 
-
+    // adding a list of countries as an attribute to the model for
+    // getting it at the returned html page
     @GetMapping("/chooseCountryForAvg")
     public String chooseCountryForAvg(Model model) {
         model.addAttribute("activePage","chooseCountryForAvg");
         Country country = new Country();
         model.addAttribute("country", country);
         List<Country> countryList = (List<Country>) countryRepository.allCountriesWithReviews();
-        //List<Country> countryList = (List<Country>) countryRepository.findAll();
         model.addAttribute("countryList", countryList);
         return "Avg/chooseCountryForAvg";
     }
 
+    // adding a list of cities of the selected city as an attribute to the model for
+    // getting it at the returned html page
     @PostMapping("/chooseCityForAvg")
     public String chooseCountry(@ModelAttribute Country selectedCountry, Model model) {
         City city = new City();
@@ -39,17 +41,20 @@ public class CountryController {
         return "Avg/chooseCityForAvg";
     }
 
+    // adding a list of countries as an attribute to the model for
+    // getting it at the returned html page
     @GetMapping("/chooseCountryForTopFive")
     public String chooseCountryForTopFive(Model model) {
         model.addAttribute("activePage","chooseCountryForTopFive");
         Country country = new Country();
         model.addAttribute("country", country);
         List<Country> countryList = (List<Country>) countryRepository.allCountriesWithReviews();
-        //List<Country> countryList = (List<Country>) countryRepository.findAll();
         model.addAttribute("countryList", countryList);
         return "TopFive/chooseCountryForTopFive";
     }
 
+    // adding a list of cities of the selected city as an attribute to the model for
+    // getting it at the returned html page
     @PostMapping("/chooseCityForTopFive")
     public String chooseCityForTopFive(@ModelAttribute Country selectedCountry, Model model) {
         City city = new City();
@@ -60,17 +65,20 @@ public class CountryController {
         return "TopFive/chooseCityForTopFive";
     }
 
+    // adding a list of countries as an attribute to the model for
+    // getting it at the returned html page
     @GetMapping("/chooseCountryForNationality")
     public String chooseCountryNationality(Model model) {
         model.addAttribute("activePage","chooseCountryForNationality");
         Country country = new Country();
         model.addAttribute("country", country);
         List<Country> countryList = (List<Country>) countryRepository.allCountriesWithReviews();
-        //List<Country> countryList = (List<Country>) countryRepository.findAll();
         model.addAttribute("countryList", countryList);
         return "Nationality/chooseCountryForNationality";
     }
 
+    // adding a list of cities of the selected city as an attribute to the model for
+    // getting it at the returned html page
     @PostMapping("/chooseCityForNationality")
     public String chooseCityForNationality(@ModelAttribute Country selectedCountry, Model model) {
         City city = new City();
@@ -81,17 +89,20 @@ public class CountryController {
         return "Nationality/chooseCityForNationality";
     }
 
+    // adding a list of countries as an attribute to the model for
+    // getting it at the returned html page
     @GetMapping("/chooseCountryForAddReview")
     public String chooseCountryForAddReview(Model model) {
         model.addAttribute("activePage","chooseCountryForAddReview");
         Country country = new Country();
         model.addAttribute("country", country);
         List<Country> countryList = (List<Country>) countryRepository.allCountriesWithReviews();
-        //List<Country> countryList = (List<Country>) countryRepository.findAll();
         model.addAttribute("countryList", countryList);
         return "AddReview/chooseCountryForAddReview";
     }
 
+    // adding a list of cities of the selected city as an attribute to the model for
+    // getting it at the returned html page
     @PostMapping("/chooseCityForAddReview")
     public String chooseCityForAddReview(@ModelAttribute Country selectedCountry, Model model) {
         City city = new City();

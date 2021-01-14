@@ -1,5 +1,6 @@
 package com.example.springboot.repository;
 
+import com.example.springboot.model.City;
 import com.example.springboot.model.Hotel;
 import com.example.springboot.model.Review;
 import org.springframework.data.jpa.repository.Query;
@@ -21,6 +22,4 @@ public interface ReviewRepository extends CrudRepository<Review, Long> {
             value = "SELECT AVG(score) FROM reviews WHERE hotel_id = :idx",
             nativeQuery = true)
     double getAverageOfHotel(@Param("idx") int idx);
-
-
 }

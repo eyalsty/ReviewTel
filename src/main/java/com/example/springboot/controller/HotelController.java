@@ -35,29 +35,7 @@ public class HotelController {
 
     private int currentHotelId;
 
-    @PostMapping(path = "/add") // Map ONLY POST Requests
-    public @ResponseBody
-    String addNewHotel(@RequestParam int id, @RequestParam String name
-            , @RequestParam String address, @RequestParam int cityId) {
-        // @ResponseBody means the returned String is the response, not a view name
-        // @RequestParam means it is a parameter from the GET or POST request
-
-        Hotel hotel = new Hotel();
-        hotel.setId(id);
-        hotel.setName(name);
-        hotel.setAddress(address);
-        hotel.setCity_id(cityId);
-        hotelRepository.save(hotel);
-        return "Saved new hotel";
-    }
-
-    @GetMapping(path = "/allHotels")
-    public @ResponseBody
-    Iterable<Hotel> getAllHotels() {
-        // This returns a JSON or XML with the users
-        return hotelRepository.findAll();
-    }
-
+    // getting the names for all hotels
     @GetMapping(path = "/allHotelsNames")
     public @ResponseBody
     Iterable<String> getAllHotelsNames() {
@@ -65,6 +43,7 @@ public class HotelController {
         return hotelRepository.getAllHotelsNames();
     }
 
+    // adding the list of reviews of selected hotel and the set the average of the hotel
     @PostMapping("/showReviewsWithAvg")
     public String chooseHotel(@ModelAttribute Hotel selectedHotel, Model model) {
         Integer hotel_id = selectedHotel.getId();
@@ -104,6 +83,7 @@ public class HotelController {
 
             reviewUIList.add(reviewUI);
         }
+        //setting the average with double format as X.Y
         model.addAttribute("reviews", reviewUIList);
         double avg = reviewRepository.getAverageOfHotel(selectedHotel.getId());
         avg = avg * 10;
@@ -117,21 +97,22 @@ public class HotelController {
         return "Avg/showReviewsWithAvg";
     }
 
+    // adding list of nationalities and average score for selected hotel
     @PostMapping("/showHotelByNationality")
     public String showHotelByNationality(@ModelAttribute City selectedCity, Model model) {
         List<Object[]> topFiveObject = (List<Object[]>) hotelRepository.getByNationality(selectedCity.getId());
-        List<HotelAvg> nationalitiesAvg = new ArrayList<>();
+        List<GeneralObjWithAvg> nationalitiesAvg = new ArrayList<>();
         for (Object[] object : topFiveObject) {
-            HotelAvg hotelAvg = new HotelAvg();
-            hotelAvg.convert(object);
-            nationalitiesAvg.add(hotelAvg);
+            GeneralObjWithAvg nationalAvg = new GeneralObjWithAvg();
+            nationalAvg.convert(object);
+            nationalitiesAvg.add(nationalAvg);
         }
 
         model.addAttribute("nationalities", nationalitiesAvg);
         return "Nationality/showHotelByNationality";
     }
 
-
+    // add ability to user in html to add review
     @PostMapping("/addReview")
     public String addReview(@ModelAttribute Hotel selectedHotel, Model model) {
         Review review = new Review();
@@ -156,15 +137,22 @@ public class HotelController {
         return "AddReview/addReview";
     }
 
+    // notify user that review submitted
     @PostMapping("/addReviewSubmitted")
     public String chooseCountry(@ModelAttribute Review review, Model model) {
-        List<Review> reviews = (List<Review>) reviewRepository.findAll();
-        Long id = reviews.get(reviews.size() - 1).getId();
-        review.setId(id + 1);
         review.setHotel_id(currentHotelId);
         java.sql.Date date = new java.sql.Date(System.currentTimeMillis());
         review.setDate(date);
-        reviewRepository.save(review);
+        boolean insert = false;
+        while(!insert)
+        {
+            try {
+                reviewRepository.save(review);
+                insert = true;
+            }
+            catch (Exception ex){}
+        }
+
         return "reviewSubmitted";
     }
 }
